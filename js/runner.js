@@ -14,6 +14,26 @@ function runTest() {
         test: testOutput
       }, undefined, 2));
     testWin.close();
+
+    // Flatten the structure for browserscope
+    var ret = {};
+    _.each(testOutput, function(test, testName) {
+      _.each(test, function(metric, metricName) {
+        if (metricName !== 'name') {
+          _.each(metric, function(value, valueName) {
+            ret[[testName, metricName, valueName].join('_')] = value;
+          });
+        }
+      });
+    });
+    window._bTestResults = ret;
+
+    // Beacon the results to Browserscope.
+    var testKey = 'agt1YS1wcm9maWxlcnINCxIEVGVzdBjrw4wQDA';
+    var newScript = document.createElement('script'),
+        firstScript = document.getElementsByTagName('script')[0];
+    newScript.src = 'http://www.browserscope.org/user/beacon/' + testKey;
+    firstScript.parentNode.insertBefore(newScript, firstScript);
   } else {
     var test = testList.shift(),
         root = location.href.replace(/\/([^\/]*?\.[^\/]*?)?$/, '');
