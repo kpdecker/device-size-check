@@ -26,5 +26,4 @@ function testComplete() {
     }
   });
   window.opener.runTest();
-  window.close();
 }

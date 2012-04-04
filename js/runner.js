@@ -4,6 +4,7 @@ $(document).ready(function() {
   });
 });
 
+var testWin;
 var testOutput = {
   userAgent: navigator.userAgent,
   tests: []
@@ -12,9 +13,10 @@ var testOutput = {
 function runTest() {
   if (!testList.length) {
     $('#content').text(JSON.stringify(testOutput, undefined, 2));
+    testWin.close();
   } else {
     var test = testList.shift(),
         root = location.href.replace(/\/([^\/]*?\.[^\/]*?)?$/, '');
-    window.open(root + '/' + test, 'device-size-check-test');
+    testWin = window.open(root + '/' + test, 'device-size-check-test');
   }
 }
