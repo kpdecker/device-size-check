@@ -1,14 +1,22 @@
 $(document).ready(function() {
   $('#run').click(function() {
     runTest();
+    timeout = setTimeout(function() {
+      // Force a reset
+      testList = [];
+      runTest();
+    }, 10000*testList.length);
   });
 });
 
-var testWin;
+var testWin,
+    timeout;
 var testOutput = {};
 
 function runTest() {
   if (!testList.length) {
+    clearTimeout(timeout);
+
     $('#content').text(JSON.stringify({
         userAgent: navigator.userAgent,
         test: testOutput
