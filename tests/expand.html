@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>expander</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  </head>
+  <body>
+    Simple browserscope test for determining device viewport sizes.
+
+    <div id="expand"></div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="../js/test.js"></script>
+    <script>
+      $(document).ready(function() {
+        $('#expand').css('height', screen.height + 'px');
+        setTimeout(testComplete, 1000);
+      });
+    </script>
+  </body>
+</html>
