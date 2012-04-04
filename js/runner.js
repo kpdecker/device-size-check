@@ -5,14 +5,14 @@ $(document).ready(function() {
 });
 
 var testWin;
-var testOutput = {
-  userAgent: navigator.userAgent,
-  tests: []
-};
+var testOutput = {};
 
 function runTest() {
   if (!testList.length) {
-    $('#content').text(JSON.stringify(testOutput, undefined, 2));
+    $('#content').text(JSON.stringify({
+        userAgent: navigator.userAgent,
+        test: testOutput
+      }, undefined, 2));
     testWin.close();
   } else {
     var test = testList.shift(),
@@ -22,6 +22,6 @@ function runTest() {
 }
 function testComplete(testInfo) {
   console.log('testComplete: ' + testInfo.name);
-  testOutput.tests.push(testInfo);
+  testOutput[testInfo.name] = testInfo;
   runTest();
 }
