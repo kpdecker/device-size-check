@@ -17,12 +17,6 @@ function runTest() {
   if (!testList.length) {
     clearTimeout(timeout);
 
-    $('#content').text(JSON.stringify({
-        userAgent: navigator.userAgent,
-        test: testOutput
-      }, undefined, 2));
-    testWin.close();
-
     // Flatten the structure for browserscope
     var ret = {
       orientation: window.orientation,
@@ -45,6 +39,13 @@ function runTest() {
         firstScript = document.getElementsByTagName('script')[0];
     newScript.src = 'http://www.browserscope.org/user/beacon/' + testKey;
     firstScript.parentNode.insertBefore(newScript, firstScript);
+
+    // Output for the user
+    $('#content').text(JSON.stringify({
+        userAgent: navigator.userAgent,
+        test: testOutput
+      }, undefined, 2));
+    testWin.close();
   } else {
     var test = testList.shift(),
         root = location.href.replace(/\/([^\/]*?\.[^\/]*?)?$/, '');
