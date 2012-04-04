@@ -2,7 +2,7 @@ function testComplete() {
   var docEl = document.documentElement;
 
   window.opener.testOutput.tests.push({
-    name: window.title,
+    name: document.title,
     orrientation: window.orrientation,
     screen: {
       width: window.screen.width,
