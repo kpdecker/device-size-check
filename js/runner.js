@@ -20,3 +20,8 @@ function runTest() {
     testWin = window.open(root + '/' + test, 'device-size-check-test');
   }
 }
+function testComplete(testInfo) {
+  console.log('testComplete: ' + testInfo.name);
+  testOutput.tests.push(testInfo);
+  runTest();
+}

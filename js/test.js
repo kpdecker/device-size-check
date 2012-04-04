@@ -1,7 +1,7 @@
 function testComplete() {
   var docEl = document.documentElement;
 
-  window.opener.testOutput.tests.push({
+  window.opener.testComplete({
     name: document.title,
     orrientation: window.orrientation,
     screen: {
@@ -25,5 +25,4 @@ function testComplete() {
       scrollHeight: docEl.scrollHeight
     }
   });
-  window.opener.runTest();
 }
