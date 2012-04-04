@@ -16,7 +16,10 @@ function runTest() {
     testWin.close();
 
     // Flatten the structure for browserscope
-    var ret = {};
+    var ret = {
+      orientation: window.orientation,
+      devicePixelRatio: window.devicePixelRatio
+    };
     _.each(testOutput, function(test, testName) {
       _.each(test, function(metric, metricName) {
         if (metricName !== 'name') {
